@@ -64,3 +64,26 @@ df2.insert(0, 'link_item', link[0])
 next_pagination_cmt = driver.find_element('xpath', '/html/body/div[4]/div/div[10]/div[1]/div[2]/div/div/div/div[3]/div[2]/div/button[2]')
 next_pagination_cmt.click()
 
+close_btn = driver.find_element('xpath', '/html/body/div[7]/div[2]/div')
+close_btn.click()
+
+#=================
+count = 0
+name_comment, content_comment, skuinfo_comment, likecount_comment = [], [], [], []
+
+while True:
+    try:
+        print('Check page ' + str(count))    
+        name_elems = driver.find_elements(By.CSS_SELECTOR, ".lazyload-wrapper .pdp-mod-review .mod-reviews .middle")
+        name_comment = [elem.text for elem in name_elems] + name_comment
+        
+        content_elems = driver.find_elements(By.CSS_SELECTOR, ".item-content .content")
+        content_comment = [elem.text for elem in name_elems] + content_comment
+        
+        skuinfo_elems = driver.find_elements(By.CSS_SELECTOR, ".item-content .skuInfo")
+        skuinfo_comment = [elem.text for elem in skuinfo_elems] + skuinfo_comment
+        
+        likecount_elems = driver.find_elements(By.CSS_SELECTOR, ".item-content .bottom .left .left-content")
+        likecount_comment = [elem.text for elem in likecount_elems] + likecount_comment
+        
+        
